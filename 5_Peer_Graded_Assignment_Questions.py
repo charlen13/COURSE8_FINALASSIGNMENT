@@ -88,16 +88,13 @@ app.layout = html.Div(children=[
                                         ),
                                         # TASK2: Add a dropdown
                                         # Enter your code below. Make sure you have correct formatting.
-                                           dcc.Dropdown(id='input-type',
+                                        dcc.Dropdown(id='input-type',
                                             options=[
-                                                    {'label': 'Yearly Airline Performance Report', 'value': OPT1},
-                                                    {'label': 'Yearly Airline Delay Report', 'value': OPT2}
+                                                {'label': 'Yearly Airline Performance Report', 'value':OPT1},
+                                                {'label': 'Yearly Airline Delay Report', 'value':OPT2}
                                             ],
                                                 placeholder='Select a report type',
                                                 style={'width': '80%', 'padding': '3px', 'font-size': 20, 'textAlign': 'center'})
-                                
-                                            ])
-
                                     # Place them next to each other using the division style
                                     ], style={'display':'flex'}),
                                     
@@ -111,9 +108,9 @@ app.layout = html.Div(children=[
                                         ),
                                         dcc.Dropdown(id='input-year', 
                                                      # Update dropdown values using list comphrehension
-                                                     options=[{'label': i, 'value': i} for i in year_list],
-                                                     placeholder="Select a year",
-                                                     style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
+                                            options=[{'label': i, 'value': i} for i in year_list],
+                                            placeholder="Select a year",
+                                            style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),
                                             # Place them next to each other using the division style
                                             ], style={'display': 'flex'}),  
                                           ]),
@@ -129,22 +126,21 @@ app.layout = html.Div(children=[
                                 
                                 # TASK3: Add a division with two empty divisions inside. See above disvision for example.
                                 # Enter your code below. Make sure you have correct formatting.
-                                html.Div([  
-                                        html.Div([ ], id='plot4'),
-                                        html.Div([ ], id='plot5')
-                                ], style={'display': 'flex'}),
-                                ])
-                            
+                               html.Div([  
+                                            html.Div([ ], id='plot4'),
+                                            html.Div([ ], id='plot5')
+                                            ], style={'display': 'flex'}),      
                                 ])
 
 # Callback function definition
 # TASK4: Add 5 ouput components
 # Enter your code below. Make sure you have correct formatting.
-@app.callback( [Output(component_id='plot1', component_property='children'),
+@app.callback([Output(component_id='plot1', component_property='children'),
                 Output(component_id='plot2', component_property='children'),
                 Output(component_id='plot3', component_property='children'),
                 Output(component_id='plot4', component_property='children'),
                 Output(component_id='plot5', component_property='children')],
+
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
                # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
@@ -187,12 +183,11 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             # TASK6: Number of flights flying to each state from each reporting airline
             # Enter your code below. Make sure you have correct formatting.
             tree_fig = px.treemap(tree_data, path=['DestState', 'Reporting_Airline'], 
-                      values='Flights',
-                      color='Flights',
-                      color_continuous_scale='RdBu',
-                      title='Flight count by airline to destination state'
+                    values='Flights',
+                    color='Flights',
+                    color_continuous_scale='RdBu',
+                    title='Flight count by airline to destination state'
                 )
-
             
             
             # REVIEW6: Return dcc.Graph component to the empty division
